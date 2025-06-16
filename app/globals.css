@@ -9,7 +9,11 @@
   --mouse-y: 0;
 }
 
-* {
+html {
+  cursor: none;
+}
+
+body * {
   cursor: none;
 }
 

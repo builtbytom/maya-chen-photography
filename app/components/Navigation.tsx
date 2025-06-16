@@ -32,43 +32,58 @@ export default function Navigation() {
 
   return (
     <>
-      {/* Floating Navigation Orbs */}
-      <div className="fixed top-0 left-0 w-full h-32 z-50">
-        {[0, 1, 2].map((i) => (
+      {/* Navigation Toggle Button */}
+      <motion.button
+        className="fixed top-8 right-8 z-50 w-16 h-16 flex items-center justify-center"
+        onClick={() => setIsOpen(!isOpen)}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <div className="relative w-full h-full">
           <motion.div
-            key={i}
-            className="absolute w-16 h-16 cursor-pointer"
-            initial={{ x: 100 + i * 200, y: 20 }}
+            className="absolute inset-0 rounded-full bg-gradient-to-br from-gold/30 to-burgundy/30 backdrop-blur-sm border border-cream/20"
             animate={{
-              y: [20, 40, 20],
-              x: 100 + i * 200 + Math.sin(Date.now() / 1000 + i) * 20,
+              scale: [1, 1.2, 1],
             }}
             transition={{
-              y: { duration: 3 + i, repeat: Infinity, ease: "easeInOut" },
-              x: { duration: 5 + i, repeat: Infinity, ease: "easeInOut" },
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
             }}
-            whileHover={{ scale: 1.2 }}
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <div className="w-full h-full rounded-full bg-gradient-to-br from-gold/20 to-burgundy/20 backdrop-blur-sm border border-cream/10" />
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
             <motion.div
-              className="absolute inset-0 rounded-full"
-              style={{
-                background: `radial-gradient(circle at center, rgba(139, 115, 85, ${0.3 + i * 0.1}), transparent)`,
-              }}
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.5, 0.2, 0.5],
-              }}
-              transition={{
-                duration: 2 + i * 0.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          </motion.div>
-        ))}
-      </div>
+              className="w-8 h-[2px] bg-cream relative"
+              animate={isOpen ? { rotate: 45 } : { rotate: 0 }}
+            >
+              <motion.div
+                className="absolute w-8 h-[2px] bg-cream"
+                animate={isOpen ? { rotate: 90, y: 0 } : { rotate: 0, y: -8 }}
+              />
+              <motion.div
+                className="absolute w-8 h-[2px] bg-cream"
+                animate={isOpen ? { opacity: 0 } : { opacity: 1, y: 8 }}
+              />
+            </motion.div>
+          </div>
+        </div>
+      </motion.button>
+
+      {/* Navigation Hint (shows on first visit) */}
+      <motion.div
+        className="fixed top-8 right-32 z-40 text-cream/60 text-sm tracking-wider"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 2 }}
+        exit={{ opacity: 0 }}
+      >
+        <motion.span
+          animate={{ opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 2, repeat: 3 }}
+        >
+          MENU
+        </motion.span>
+      </motion.div>
 
       {/* Full Screen Navigation Menu */}
       <AnimatePresence>

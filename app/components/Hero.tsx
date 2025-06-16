@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
 
 const images = [
-  { src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80', alt: 'Portrait 1' },
-  { src: 'https://images.unsplash.com/photo-1617638924571-92d272ce9338?w=800&q=80', alt: 'Portrait 2' },
-  { src: 'https://images.unsplash.com/photo-1604514628550-37477afdf4e3?w=800&q=80', alt: 'Portrait 3' },
-  { src: 'https://images.unsplash.com/photo-1606216265946-61fe4a1d3b84?w=800&q=80', alt: 'Portrait 4' },
-  { src: 'https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=800&q=80', alt: 'Portrait 5' },
+  { src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80' },
+  { src: 'https://images.unsplash.com/photo-1617638924571-92d272ce9338?w=800&q=80' },
+  { src: 'https://images.unsplash.com/photo-1604514628550-37477afdf4e3?w=800&q=80' },
+  { src: 'https://images.unsplash.com/photo-1606216265946-61fe4a1d3b84?w=800&q=80' },
+  { src: 'https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=800&q=80' },
 ]
 
 export default function Hero() {
@@ -110,7 +110,7 @@ export default function Hero() {
             >
               <img
                 src={image.src}
-                alt={image.alt}
+                alt=""
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
