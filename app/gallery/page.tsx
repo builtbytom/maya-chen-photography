@@ -12,6 +12,16 @@ const galleryImages = [
   { id: 6, src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80', category: 'creative', title: 'Urban Dreams' },
   { id: 7, src: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=800&q=80', category: 'portrait', title: 'Soft Focus' },
   { id: 8, src: 'https://images.unsplash.com/photo-1495366691023-cc4eadcc2d7e?w=800&q=80', category: 'family', title: 'Generations' },
+  { id: 9, src: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&q=80', category: 'portrait', title: 'Natural Beauty' },
+  { id: 10, src: 'https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?w=800&q=80', category: 'creative', title: 'Contemplation' },
+  { id: 11, src: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=80', category: 'portrait', title: 'Vibrant Soul' },
+  { id: 12, src: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&q=80', category: 'creative', title: 'Artistic Vision' },
+  { id: 13, src: 'https://images.unsplash.com/photo-1511551203524-9a24350a5771?w=800&q=80', category: 'family', title: 'Joy Unfiltered' },
+  { id: 14, src: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80', category: 'portrait', title: 'Quiet Strength' },
+  { id: 15, src: 'https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=800&q=80', category: 'creative', title: 'Urban Poetry' },
+  { id: 16, src: 'https://images.unsplash.com/photo-1496440737103-cd596325d314?w=800&q=80', category: 'family', title: 'Connection' },
+  { id: 17, src: 'https://images.unsplash.com/photo-1521119989659-a83eee488004?w=800&q=80', category: 'portrait', title: 'Bold Expression' },
+  { id: 18, src: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800&q=80', category: 'creative', title: 'Timeless' },
 ]
 
 const categories = ['all', 'portrait', 'creative', 'family']

@@ -8,25 +8,25 @@ const processSteps = [
     number: '01',
     title: 'Vision',
     description: 'We begin with understanding your story, your essence, and what makes you unique.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=600&q=80',
   },
   {
     number: '02',
     title: 'Creation',
     description: 'Through careful composition and natural light, we capture authentic moments.',
-    image: 'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&q=80',
   },
   {
     number: '03',
     title: 'Refinement',
     description: 'Each image is thoughtfully edited to enhance the mood and emotion.',
-    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1526510747491-58f928ec870f?w=600&q=80',
   },
   {
     number: '04',
     title: 'Delivery',
     description: 'Your visual story comes to life in a beautifully curated collection.',
-    image: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=600&q=80',
   },
 ]
 

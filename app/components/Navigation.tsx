@@ -32,6 +32,20 @@ export default function Navigation() {
 
   return (
     <>
+      {/* Logo - Always Visible */}
+      <Link href="/">
+        <motion.div
+          className="fixed top-8 left-8 z-50 text-cream"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <h1 className="text-2xl font-display font-thin tracking-widest">
+            MAYA CHEN
+          </h1>
+          <p className="text-xs tracking-wider text-cream/60 mt-1">PHOTOGRAPHY</p>
+        </motion.div>
+      </Link>
+
       {/* Navigation Toggle Button */}
       <motion.button
         className="fixed top-8 right-8 z-50 w-16 h-16 flex items-center justify-center"
@@ -174,17 +188,6 @@ export default function Navigation() {
               </div>
             </div>
 
-            {/* Maya Chen Logo */}
-            <motion.div
-              className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <h1 className="text-2xl font-display font-thin tracking-widest text-cream/50">
-                MAYA CHEN
-              </h1>
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

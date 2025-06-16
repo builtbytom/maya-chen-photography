@@ -72,7 +72,7 @@ export default function IntroSection() {
             }}
           >
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
+              src="https://images.unsplash.com/photo-1555421689-3f034debb7a6?w=800&q=80"
               alt=""
               className="w-full h-[600px] object-cover"
             />
