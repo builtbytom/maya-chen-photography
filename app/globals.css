@@ -1,26 +1,73 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --mouse-x: 0;
+  --mouse-y: 0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  cursor: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-charcoal text-cream font-body overflow-x-hidden;
+  position: relative;
+}
+
+/* Custom cursor */
+.cursor {
+  @apply fixed w-8 h-8 rounded-full bg-cream mix-blend-difference pointer-events-none z-[999] transition-transform duration-100 ease-out;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-hover {
+  @apply scale-150;
+}
+
+/* Hide scrollbar but keep functionality */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Magnetic hover effect */
+.magnetic {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Liquid motion transitions */
+.liquid-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.liquid-image {
+  transition: border-radius 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.reveal.active {
+  animation: reveal 1s ease-out forwards;
+}
+
+/* Cinematic fade */
+.cinematic-fade {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(10, 10, 10, 0.4) 100%);
+  pointer-events: none;
+  z-index: 10;
 }
