@@ -38,9 +38,11 @@ export default function Process() {
   })
 
   // Pre-calculate transforms for each process step
-  const stepTransforms = processSteps.map((_, index) => 
-    useTransform(scrollYProgress, [index * 0.25, (index + 1) * 0.25], [50, -50])
-  )
+  const stepTransform0 = useTransform(scrollYProgress, [0, 0.25], [50, -50])
+  const stepTransform1 = useTransform(scrollYProgress, [0.25, 0.5], [50, -50])
+  const stepTransform2 = useTransform(scrollYProgress, [0.5, 0.75], [50, -50])
+  const stepTransform3 = useTransform(scrollYProgress, [0.75, 1], [50, -50])
+  const stepTransforms = [stepTransform0, stepTransform1, stepTransform2, stepTransform3]
 
   return (
     <div ref={containerRef} className="bg-charcoal">

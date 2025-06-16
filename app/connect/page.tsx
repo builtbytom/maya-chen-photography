@@ -14,6 +14,26 @@ export default function Connect() {
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
+  // Pre-calculate transforms for all 5 background elements
+  const bgTransform0X = useTransform(mouseX, [0, 1920], [0, 30])
+  const bgTransform0Y = useTransform(mouseY, [0, 1080], [0, 30])
+  const bgTransform1X = useTransform(mouseX, [0, 1920], [0, 60])
+  const bgTransform1Y = useTransform(mouseY, [0, 1080], [0, 60])
+  const bgTransform2X = useTransform(mouseX, [0, 1920], [0, 90])
+  const bgTransform2Y = useTransform(mouseY, [0, 1080], [0, 90])
+  const bgTransform3X = useTransform(mouseX, [0, 1920], [0, 120])
+  const bgTransform3Y = useTransform(mouseY, [0, 1080], [0, 120])
+  const bgTransform4X = useTransform(mouseX, [0, 1920], [0, 150])
+  const bgTransform4Y = useTransform(mouseY, [0, 1080], [0, 150])
+  
+  const bgTransforms = [
+    { x: bgTransform0X, y: bgTransform0Y },
+    { x: bgTransform1X, y: bgTransform1Y },
+    { x: bgTransform2X, y: bgTransform2Y },
+    { x: bgTransform3X, y: bgTransform3Y },
+    { x: bgTransform4X, y: bgTransform4Y }
+  ]
+
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect()
     mouseX.set(e.clientX - rect.left)
@@ -34,13 +54,13 @@ export default function Connect() {
         className="absolute top-0 left-0 w-full h-full pointer-events-none"
         onMouseMove={handleMouseMove}
       >
-        {[...Array(5)].map((_, i) => (
+        {bgTransforms.map((transform, i) => (
           <motion.div
             key={i}
             className="absolute w-64 h-64 rounded-full"
             style={{
-              x: useTransform(mouseX, [0, window.innerWidth], [0, 30 * (i + 1)]),
-              y: useTransform(mouseY, [0, window.innerHeight], [0, 30 * (i + 1)]),
+              x: transform.x,
+              y: transform.y,
               left: `${20 * i}%`,
               top: `${20 * i}%`,
               background: `radial-gradient(circle, rgba(139, 115, 85, 0.1), transparent)`,

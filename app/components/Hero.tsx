@@ -23,12 +23,18 @@ export default function Hero() {
 
   // Pre-calculate transforms for all images
   const rotationTransform = useTransform(springX, [-500, 500], [-15, 15])
-  const xTransforms = images.map((_, index) => 
-    useTransform(springX, (x) => x * (0.1 + index * 0.05))
-  )
-  const yTransforms = images.map((_, index) => 
-    useTransform(springY, (y) => y * (0.1 + index * 0.05))
-  )
+  const xTransform0 = useTransform(springX, (x) => x * 0.1)
+  const xTransform1 = useTransform(springX, (x) => x * 0.15)
+  const xTransform2 = useTransform(springX, (x) => x * 0.2)
+  const xTransform3 = useTransform(springX, (x) => x * 0.25)
+  const xTransform4 = useTransform(springX, (x) => x * 0.3)
+  const yTransform0 = useTransform(springY, (y) => y * 0.1)
+  const yTransform1 = useTransform(springY, (y) => y * 0.15)
+  const yTransform2 = useTransform(springY, (y) => y * 0.2)
+  const yTransform3 = useTransform(springY, (y) => y * 0.25)
+  const yTransform4 = useTransform(springY, (y) => y * 0.3)
+  const xTransforms = [xTransform0, xTransform1, xTransform2, xTransform3, xTransform4]
+  const yTransforms = [yTransform0, yTransform1, yTransform2, yTransform3, yTransform4]
   const titleXTransform = useTransform(springX, (x) => x * -0.02)
   const titleYTransform = useTransform(springY, (y) => y * -0.02)
 
