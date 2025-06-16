@@ -66,7 +66,7 @@ export default function Connect() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-6xl md:text-8xl font-display font-thin tracking-widest text-cream mb-4">
-            LET\'S CONNECT
+            LET&apos;S CONNECT
           </h1>
           <p className="text-xl text-cream/70 font-light">
             Every great story begins with a conversation

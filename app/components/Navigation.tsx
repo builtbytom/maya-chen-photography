@@ -17,6 +17,10 @@ export default function Navigation() {
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
+  // Pre-calculate transforms
+  const xTransform = useTransform(mouseX, [0, 1920], [-10, 10])
+  const yTransform = useTransform(mouseY, [0, 1080], [-10, 10])
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX)
@@ -118,6 +122,7 @@ export default function Navigation() {
                             src={item.image}
                             alt={item.label}
                             className="w-full h-full object-cover"
+                            loading="lazy"
                           />
                           <div className="absolute inset-0 bg-charcoal/70" />
                         </motion.div>
@@ -127,8 +132,8 @@ export default function Navigation() {
                           <motion.h3
                             className="text-5xl font-display font-light text-cream magnetic"
                             style={{
-                              x: useTransform(mouseX, [0, window.innerWidth], [-10, 10]),
-                              y: useTransform(mouseY, [0, window.innerHeight], [-10, 10]),
+                              x: xTransform,
+                              y: yTransform,
                             }}
                           >
                             {item.label}

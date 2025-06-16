@@ -21,6 +21,17 @@ export default function Hero() {
   const springX = useSpring(mouseX, springConfig)
   const springY = useSpring(mouseY, springConfig)
 
+  // Pre-calculate transforms for all images
+  const rotationTransform = useTransform(springX, [-500, 500], [-15, 15])
+  const xTransforms = images.map((_, index) => 
+    useTransform(springX, (x) => x * (0.1 + index * 0.05))
+  )
+  const yTransforms = images.map((_, index) => 
+    useTransform(springY, (y) => y * (0.1 + index * 0.05))
+  )
+  const titleXTransform = useTransform(springX, (x) => x * -0.02)
+  const titleYTransform = useTransform(springY, (y) => y * -0.02)
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (containerRef.current) {
@@ -50,7 +61,6 @@ export default function Hero() {
 
       {/* Floating images that follow cursor */}
       {images.map((image, index) => {
-        const rotation = useTransform(springX, [-500, 500], [-15, 15])
         const scale = index === activeIndex ? 1 : 0.8
         const opacity = index === activeIndex ? 1 : 0.3
         const zIndex = index === activeIndex ? 10 : index
@@ -60,9 +70,9 @@ export default function Hero() {
             key={index}
             className="absolute"
             style={{
-              x: useTransform(springX, (x) => x * (0.1 + index * 0.05)),
-              y: useTransform(springY, (y) => y * (0.1 + index * 0.05)),
-              rotate: rotation,
+              x: xTransforms[index],
+              y: yTransforms[index],
+              rotate: rotationTransform,
               left: `${20 + index * 15}%`,
               top: `${10 + (index % 2) * 20}%`,
               zIndex,
@@ -96,6 +106,7 @@ export default function Hero() {
                 src={image.src}
                 alt={image.alt}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 to-transparent" />
             </motion.div>
@@ -107,8 +118,8 @@ export default function Hero() {
       <motion.div
         className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-20"
         style={{
-          x: useTransform(springX, (x) => x * -0.02),
-          y: useTransform(springY, (y) => y * -0.02),
+          x: titleXTransform,
+          y: titleYTransform,
         }}
       >
         <motion.h1

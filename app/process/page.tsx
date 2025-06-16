@@ -37,6 +37,11 @@ export default function Process() {
     offset: ['start start', 'end end'],
   })
 
+  // Pre-calculate transforms for each process step
+  const stepTransforms = processSteps.map((_, index) => 
+    useTransform(scrollYProgress, [index * 0.25, (index + 1) * 0.25], [50, -50])
+  )
+
   return (
     <div ref={containerRef} className="bg-charcoal">
       {/* Hero Section */}
@@ -87,7 +92,7 @@ export default function Process() {
               <motion.span
                 className="text-8xl font-display font-thin text-gold/30"
                 style={{
-                  y: useTransform(scrollYProgress, [index * 0.25, (index + 1) * 0.25], [50, -50]),
+                  y: stepTransforms[index],
                 }}
               >
                 {step.number}
@@ -131,6 +136,7 @@ export default function Process() {
                   src={step.image}
                   alt={step.title}
                   className="w-full h-[500px] object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-charcoal/20 to-transparent" />
               </motion.div>
@@ -177,7 +183,7 @@ export default function Process() {
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            Let\'s create something beautiful together.
+            Let&apos;s create something beautiful together.
           </motion.p>
           <motion.a
             href="/connect"

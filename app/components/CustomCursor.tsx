@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { motion, useSpring } from 'framer-motion'
 
 export default function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
 
   const springConfig = { damping: 25, stiffness: 700 }
@@ -13,7 +12,6 @@ export default function CustomCursor() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
       cursorX.set(e.clientX)
       cursorY.set(e.clientY)
     }
