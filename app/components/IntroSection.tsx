@@ -27,7 +27,7 @@ export default function IntroSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="min-h-screen bg-charcoal flex items-center justify-center px-8 py-32">
+    <section ref={sectionRef} className="min-h-screen bg-ink flex items-center justify-center px-8 py-32">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
         <motion.div
           className="reveal"

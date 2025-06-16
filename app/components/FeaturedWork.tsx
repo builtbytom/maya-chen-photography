@@ -23,7 +23,7 @@ const featuredProjects = [
 
 export default function FeaturedWork() {
   return (
-    <section className="min-h-screen bg-ink py-32 px-8 relative overflow-hidden">
+    <section className="min-h-screen bg-charcoal py-32 px-8 relative overflow-hidden">
       {/* Background texture */}
       <div className="absolute inset-0 opacity-5">
         <div className="w-full h-full" style={{
