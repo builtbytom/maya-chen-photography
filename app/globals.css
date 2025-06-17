@@ -9,12 +9,14 @@
   --mouse-y: 0;
 }
 
-html {
-  cursor: none;
-}
+@media (hover: hover) and (pointer: fine) {
+  html {
+    cursor: none;
+  }
 
-body * {
-  cursor: none;
+  body * {
+    cursor: none;
+  }
 }
 
 html {
@@ -27,13 +29,21 @@ body {
 }
 
 /* Custom cursor */
-.cursor {
-  @apply fixed w-8 h-8 rounded-full bg-cream mix-blend-difference pointer-events-none z-[999] transition-transform duration-100 ease-out;
-  transform: translate(-50%, -50%);
+@media (hover: hover) and (pointer: fine) {
+  .cursor {
+    @apply fixed w-8 h-8 rounded-full bg-cream mix-blend-difference pointer-events-none z-[999] transition-transform duration-100 ease-out;
+    transform: translate(-50%, -50%);
+  }
+
+  .cursor-hover {
+    @apply scale-150;
+  }
 }
 
-.cursor-hover {
-  @apply scale-150;
+@media (hover: none) and (pointer: coarse) {
+  .cursor {
+    display: none !important;
+  }
 }
 
 /* Hide scrollbar but keep functionality */

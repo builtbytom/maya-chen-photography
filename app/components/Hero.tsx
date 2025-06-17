@@ -14,6 +14,7 @@ const images = [
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
@@ -39,8 +40,17 @@ export default function Hero() {
   const titleYTransform = useTransform(springY, (y) => y * -0.02)
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (containerRef.current) {
+      if (containerRef.current && !isMobile) {
         const rect = containerRef.current.getBoundingClientRect()
         const x = e.clientX - rect.left - rect.width / 2
         const y = e.clientY - rect.top - rect.height / 2
@@ -49,9 +59,11 @@ export default function Hero() {
       }
     }
 
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [mouseX, mouseY])
+    if (!isMobile) {
+      window.addEventListener('mousemove', handleMouseMove)
+      return () => window.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [mouseX, mouseY, isMobile])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -70,17 +82,30 @@ export default function Hero() {
         const scale = index === activeIndex ? 1 : 0.8
         const opacity = index === activeIndex ? 1 : 0.3
         const zIndex = index === activeIndex ? 10 : index
+        
+        // Mobile positioning: vertical stack with slight offset
+        const mobilePosition = {
+          left: `${10 + (index % 2) * 60}%`,
+          top: `${15 + index * 15}%`,
+        }
+        
+        // Desktop positioning: spread horizontally
+        const desktopPosition = {
+          left: `${20 + index * 15}%`,
+          top: `${10 + (index % 2) * 20}%`,
+        }
+        
+        const position = isMobile ? mobilePosition : desktopPosition
 
         return (
           <motion.div
             key={index}
             className="absolute"
             style={{
-              x: xTransforms[index],
-              y: yTransforms[index],
-              rotate: rotationTransform,
-              left: `${20 + index * 15}%`,
-              top: `${10 + (index % 2) * 20}%`,
+              x: isMobile ? 0 : xTransforms[index],
+              y: isMobile ? 0 : yTransforms[index],
+              rotate: isMobile ? 0 : rotationTransform,
+              ...position,
               zIndex,
             }}
             animate={{
@@ -91,10 +116,10 @@ export default function Hero() {
           >
             <motion.div
               className="relative overflow-hidden liquid-container"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: isMobile ? 1 : 1.05 }}
               style={{
-                width: '300px',
-                height: '400px',
+                width: isMobile ? '150px' : '300px',
+                height: isMobile ? '200px' : '400px',
                 borderRadius: index === activeIndex ? '60% 40% 30% 70% / 60% 30% 70% 40%' : '20px',
               }}
               animate={{
@@ -121,14 +146,14 @@ export default function Hero() {
 
       {/* Title with parallax effect */}
       <motion.div
-        className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-20"
+        className={`absolute ${isMobile ? 'bottom-20 left-1/2 transform -translate-x-1/2' : 'left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'} text-center z-20`}
         style={{
-          x: titleXTransform,
-          y: titleYTransform,
+          x: isMobile ? 0 : titleXTransform,
+          y: isMobile ? 0 : titleYTransform,
         }}
       >
         <motion.h1
-          className="text-6xl md:text-8xl font-display font-thin tracking-widest text-cream mb-4"
+          className="text-4xl sm:text-6xl md:text-8xl font-display font-thin tracking-widest text-cream mb-2 md:mb-4"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
@@ -136,7 +161,7 @@ export default function Hero() {
           MAYA CHEN
         </motion.h1>
         <motion.p
-          className="text-xl md:text-2xl font-display font-extralight tracking-wide text-cream/70"
+          className="text-lg sm:text-xl md:text-2xl font-display font-extralight tracking-wide text-cream/70"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
